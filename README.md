@@ -6,7 +6,7 @@
 [![Gem Version](https://badge.fury.io/rb/highcharts_exporting.svg)](http://badge.fury.io/rb/highcharts_exporting)
 -->
 
-Canvas server exporting for Rails.
+CanvasJS chart exporting for Rails.
 
 ## Installation
 
@@ -37,6 +37,10 @@ end
 
 Config url `/canvas/export` for canvas exporting.
 
+## References
+
+** https://github.com/bastengao/highcharts_exporting
+**
 
 ## Contributing
 
