@@ -61,15 +61,19 @@ module CanvasExporting
     end
 
     def infile_file
-      tmp_file = nil
-      if params[:options]
-        tmp_file = Tempfile.new(['options', '.json'], tmp_dir)
-        temp_write(tmp_file, params[:options])
-      elsif params[:svg]
-        tmp_file = Tempfile.new(['options', '.svg'], tmp_dir)
-        temp_write(tmp_file, params[:svg])
+      begin
+        tmp_file = nil
+        if params[:options]
+          tmp_file = Tempfile.new(['options', '.json'], tmp_dir)
+          temp_write(tmp_file, params[:options])
+        elsif params[:svg]
+          tmp_file = Tempfile.new(['options', '.svg'], tmp_dir)
+          temp_write(tmp_file, params[:svg])
+        end
+      rescue e
+        logger.debug ("infile_file in exporter.rb.  Exception: #{e}")
+        raise e
       end
-
       tmp_file
     end
 
