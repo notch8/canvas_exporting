@@ -52,8 +52,8 @@ Curl::Easy.http_post("http://localhost:3000/canvas/export",
 
 ## References
 
-** https://github.com/bastengao/highcharts_exporting
-**
+https://github.com/bastengao/highcharts_exporting
+
 
 ## Contributing
 
