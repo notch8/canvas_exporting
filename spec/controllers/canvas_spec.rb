@@ -46,68 +46,22 @@ describe CanvasController do
     expect(response.content_type).to eq 'image/png'
   end
 
-    it 'export through options to specific file' do
-      post :export, options: options, type: 'image/png', scale: 2, callback: callback, constr: 'Chart', outputpath: './spec/dummy/tmp', filename: 'chart_test3.png'
-      expect(response).to be_success
-      expect(response.content_type).to eq 'image/png'
-    end
-  # it 'export through svg' do
-  #   post :export, svg: svg, type: 'image/png', scale: 2, c1llback: callback
-  #   expect(response).to be_success
-  #   expect(response.content_type).to eq 'image/png'
-  # end
-  #
-  # it 'export specific filename' do
-  #   post :export, options: options, type: 'image/png', filename: 'my_chart'
-  #   expect(response).to be_success
-  #   expect(response.content_type).to eq 'image/png'
-  #   expect(response['Content-Disposition']).to include 'my_chart.png'
-  # end
-  #
-  # describe 'type' do
-  #   it 'export to jpeg' do
-  #     post :export, options: options, type: 'image/jpeg', scale: 2, c1llback: callback
-  #     expect(response).to be_success
-  #     expect(response.content_type).to eq 'image/jpeg'
-  #   end
-  #
-  #   it 'export to pdf' do
-  #     post :export, options: options, type: 'application/pdf', scale: 2, c1llback: callback
-  #     expect(response).to be_success
-  #     expect(response.content_type).to eq 'application/pdf'
-  #   end
-  #
-  #   it 'export to svg' do
-  #     post :export, options: options, type: 'image/svg+xml', scale: 2, c1llback: callback
-  #     expect(response).to be_success
-  #     expect(response.content_type).to eq 'image/svg+xml'
-  #   end
-  # end
+  it 'export through options to specific file' do
+    post :export, options: options, type: 'image/png', scale: 2, callback: callback, constr: 'Chart', outputpath: './spec/dummy/tmp', filename: 'chart_test3.png'
+    expect(response).to be_success
+    expect(response.content_type).to eq 'image/png'
+  end
 
-  # describe 'default params' do
-  #   it 'default scale' do
-  #     post :export, options: options, type: 'image/png', callback: callback, constr: 'Chart'
-  #     expect(response).to be_success
-  #     expect(response.content_type).to eq 'image/png'
-  #   end
-  #
-  #   it 'default constr' do
-  #     post :export, options: options, type: 'image/png', scale: 2, callback: callback
-  #     expect(response).to be_success
-  #     expect(response.content_type).to eq 'image/png'
-  #   end
-  #
-  #   it 'default type' do
-  #     post :export, options: options, scale: 2, callback: callback, constr: 'Chart'
-  #     expect(response).to be_success
-  #     expect(response.content_type).to eq 'image/png'
-  #   end
-  #
-  #   it 'missing callback' do
-  #     post :export, options: options, type: 'image/png', scale: 2, constr: 'Chart'
-  #     expect(response).to be_success
-  #     expect(response.content_type).to eq 'image/png'
-  #   end
-  # end
+  it 'export through options with specific width' do
+    post :export, options: options, type: 'image/png', width: 700, scale: 2, callback: callback, constr: 'Chart'
+    expect(response).to be_success
+    expect(response.content_type).to eq 'image/png'
+  end
+
+  it 'export through options with specific width' do
+    post :export, options: options, type: 'image/jpeg', width: 700, scale: 2, callback: callback, constr: 'Chart'
+    expect(response).to be_success
+    expect(response.content_type).to eq 'image/jpeg'
+  end
 
 end

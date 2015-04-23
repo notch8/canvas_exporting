@@ -30,7 +30,7 @@ module CanvasExporting
       @output_file = output_path + filename
 
       scale = params[:scale] || 2
-      width = params[:width]
+      width = params[:width] || 400
       constr = params[:constr] || 'Chart'
 
       convert_args = convert_args({infile: @infile_tmp_file.path,

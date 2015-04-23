@@ -43,12 +43,12 @@ Using curl:
 
 Curl::Easy.http_post("http://localhost:3000/canvas/export",<br>
                           Curl::PostField.content('options', options_JSON.to_s),<br>
-                          Curl::PostField.content('type', 'image/png'),
-                          Curl::PostField.content('callback', cb_js_filename),
-                          Curl::PostField.content('width', '400'),
-                          Curl::PostField.content('outputpath', path_to_image_file),
+                          Curl::PostField.content('type', 'image/png'),<br>
+                          Curl::PostField.content('callback', cb_js_filename),<br>
+                          Curl::PostField.content('width', '400'),<br>
+                          Curl::PostField.content('outputpath', path_to_image_file),<br>
                           Curl::PostField.content('filename', image_filename)
-                          )
+                          )<br>
 
 ## References
 

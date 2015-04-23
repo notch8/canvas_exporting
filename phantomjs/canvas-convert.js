@@ -121,7 +121,7 @@
 			exitCallback(result);
 		};
 
-		loadChart = function( string_in, outputType ) {
+		loadChart = function( string_in, outputType, width ) {
 
 			try {
 
@@ -133,24 +133,20 @@
 
 				container = $('<div>').appendTo(document.body);
 				container.attr('id', 'chartContainer' );
-				// var sizing = 'width: ' + width + 'px;';
-				// $container.attr('style', sizing );
-				//console.log(" json_in: " + JSON.parse(json_in) );
+
+				var sizing = 'width: ' + width + 'px;';
+				$("#chartContainer").attr('style', sizing)
+
 				var json_in = JSON.parse(string_in);
-				//json_in = JSON.parse(json_in);
 				json_in["animationEnabled"] = false;
 
-				//console.log ("just before canvas rendering");
-
 				var chartTest = new CanvasJS.Chart("chartContainer", json_in );
-				console.log ("complete the object create");
 
 				var rs = chartTest.render();
-				console.log ("completed the rendering");
 
 				var htmlout = $('.canvasjs-chart-canvas')[0];
-				//var imageData = htmlout.toDataURL(outType, 0.92 );
-				var imageData = htmlout.toDataURL('image/'+outputType, 0.92 );
+				var imageData = htmlout.toDataURL(outputType, 0.92 );
+				//var imageData = htmlout.toDataURL('image/'+outputType, 0.92 );
 			} catch (e) {
 				console.log('ERROR: Cannot create CanvasJS object.');
 				console.log('Error message: ' + e.number + " - " + e.message)
@@ -199,7 +195,7 @@
 					}
 				}
 
-				var rs = page.evaluate(loadChart, input, outType );
+				var rs = page.evaluate(loadChart, input, outType, width );
 
 				try {
 					var result = rs["html"].split(",")
@@ -258,9 +254,6 @@
 
 	args = mapCLArguments();
 
-	//console.log("made it past the args mapper")
-	//console.log("arguments: " + JSON.stringify(args));
-	// set tmpDir, for output temporary files.
 	if (args.tmpdir === undefined) {
 		config.tmpDir = fs.workingDirectory + '/tmp';
 	} else {
@@ -281,7 +274,6 @@
 		startServer(args.host, args.port);
 	} else {
 		// presume commandline usage
-		//console.log("calling the renderer");
 		render(args, function (msg) {
 			console.log(msg);
 			phantom.exit();
