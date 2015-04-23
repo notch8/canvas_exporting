@@ -41,8 +41,8 @@ OR
 
 Using curl:
 
-Curl::Easy.http_post("http://localhost:3000/canvas/export",
-                          Curl::PostField.content('options', options_JSON.to_s),
+Curl::Easy.http_post("http://localhost:3000/canvas/export",<br>
+                          Curl::PostField.content('options', options_JSON.to_s),<br>
                           Curl::PostField.content('type', 'image/png'),
                           Curl::PostField.content('callback', cb_js_filename),
                           Curl::PostField.content('width', '400'),
