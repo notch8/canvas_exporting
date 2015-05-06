@@ -142,11 +142,29 @@
 
 				// load the color set if specified
 				if (color_set !== null) {
-					set_array = color_set.split(",")
-					setname = set_array[0]
-					colors = set_array.shift()
+					set_array = color_set.split(",");
+					setname = set_array[0];
+					colors = set_array.shift();
 					CanvasJS.addColorSet(setname, colors);
 				}
+
+				CanvasJS.addColorSet("fortis",
+					["#01344F", "#3388BE", "#B1B5BA", "#009066",
+					"#45484D", "#004F30", "#00B6BE", "#007C88"
+				]);
+
+				CanvasJS.addColorSet("fortisextra",
+					["#01344F", "#3388BE", "#B1B5BA", "#009066",
+					"#45484D", "#004F30", "#00B6BE", "#007C88",
+					"#4E3E6E", "#B8A988", "#8E1416", "#CF8B2D",
+					"#37272D", "#45484D", "#DDD7CD"
+				]);
+
+				CanvasJS.addColorSet("fortissingle",
+					["#3388BE"]
+				);
+
+
 				//
 				var chartTest = new CanvasJS.Chart("chartContainer", json_in );
 
@@ -203,8 +221,10 @@
 					}
 				}
 
-				var color_set = params.colorset || null
-				var rs = page.evaluate(loadChart, input, outType, width, color_set );
+				// var color_set = params.colorset || null
+				// throw ("colorset: " + params.colorset);
+
+				var rs = page.evaluate(loadChart, input, outType, width, params.colorset );
 
 				try {
 					var result = rs["html"].split(",")
