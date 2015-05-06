@@ -15,6 +15,6 @@ Gem::Specification.new do |s|
   s.files = Dir["{app,config,db,lib,phantomjs}/**/*", "MIT-LICENSE", "Rakefile", "README.rdoc"]
 
   s.add_dependency 'rails', '>= 3.2', '< 5'
-  s.add_dependency 'phantomjs', '>=1.9.8.0'
-  s.add_development_dependency 'rspec-rails', '>=3.2.1'
+  s.add_dependency 'phantomjs', '~>1.9', '>=1.9.8.0'
+  s.add_development_dependency 'rspec-rails', '~> 3.2', '>= 3.2.1'
 end
