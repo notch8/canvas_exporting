@@ -121,7 +121,7 @@
 			exitCallback(result);
 		};
 
-		loadChart = function( string_in, outputType, width ) {
+		loadChart = function( string_in, outputType, width, color_set ) {
 
 			try {
 
@@ -140,6 +140,14 @@
 				var json_in = JSON.parse(string_in);
 				json_in["animationEnabled"] = false;
 
+				// load the color set if specified
+				if (color_set !== null) {
+					set_array = color_set.split(",")
+					setname = set_array[0]
+					colors = set_array.shift()
+					CanvasJS.addColorSet(setname, colors);
+				}
+				//
 				var chartTest = new CanvasJS.Chart("chartContainer", json_in );
 
 				var rs = chartTest.render();
@@ -195,7 +203,8 @@
 					}
 				}
 
-				var rs = page.evaluate(loadChart, input, outType, width );
+				var color_set = params.colorset || null
+				var rs = page.evaluate(loadChart, input, outType, width, color_set );
 
 				try {
 					var result = rs["html"].split(",")

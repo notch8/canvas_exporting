@@ -29,6 +29,14 @@ module CanvasExporting
 
       @output_file = output_path + filename
 
+      if params[:colorset] == nil
+        color_set = ""
+      else
+        color_set = params[:colorset]
+      end
+
+      #Rails.logger.debug "colorset: #{color_set}"
+
       scale = params[:scale] || 2
       width = params[:width] || 400
       constr = params[:constr] || 'Chart'
@@ -38,7 +46,8 @@ module CanvasExporting
                                    scale: scale,
                                    width: width,
                                    constr: constr,
-                                   callback: callback_path
+                                   callback: callback_path,
+                                   colorset: color_set
                                   })
 
       result = ::Phantomjs.run(*convert_args)

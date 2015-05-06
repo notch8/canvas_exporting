@@ -59,7 +59,13 @@ describe CanvasController do
   end
 
   it 'export through options with specific width' do
-    post :export, options: options, type: 'image/jpeg', width: 700, scale: 2, callback: callback, constr: 'Chart'
+    post :export, options: options, type: 'image/jpeg', width: 700, scale: 1, callback: callback, constr: 'Chart'
+    expect(response).to be_success
+    expect(response.content_type).to eq 'image/jpeg'
+  end
+
+  it 'picks up the Colorset param and implements correctly' do
+    post :export, options: options, type: 'image/jpeg', width: 700, scale: 2, callback: callback, constr: 'Chart', colorset: 'fortissingle,#3388BE'
     expect(response).to be_success
     expect(response.content_type).to eq 'image/jpeg'
   end
